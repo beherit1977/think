@@ -14,10 +14,10 @@ katets = [a, b, c].sort.take(2)
 summ = katets.inject(0) { |summ, x| summ += x**2 }
 
 if  gipotenuse**2 == summ
-  puts 'Это Прямоугольный треугольник'
+  puts 'Это прямоугольный треугольник'
 
   if katets[0] == katets[1]
-    puts 'Треугольник равнобедренный и Прямоугольный'
+    puts 'Треугольник равнобедренный и прямоугольный'
   end
 else
   puts 'Не прямоугольный треугольник'

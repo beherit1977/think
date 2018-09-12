@@ -8,9 +8,9 @@ c = gets.to_f
 
 d = (b * b) - (4 * a * c)
 puts "Дискриминант = #{d}"
-d_sqrt = Math.sqrt(d)
 
 if d > 0
+  d_sqrt = Math.sqrt(d)
   x1 = (-b + d_sqrt) / (2 * a)
   x2 = (-b - d_sqrt) / (2 * a)
  puts "Корень1: #{x1} Корень2: #{x2}"
