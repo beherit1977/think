@@ -10,10 +10,6 @@ class Station
     @trains << train
   end
 
-  def list_trains
-    @trains
-  end
-
   def list_cargo_trains
     @trains.select {|x| x.type == "cargo"}
   end

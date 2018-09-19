@@ -61,8 +61,7 @@ tr1.recive_route(r)
 # Может перемещаться между станциями, указанными в маршруте.
 # Перемещение возможно вперед и назад, но только на 1 станцию за раз.
 tr1.move_back(r)
-tr1.move_forward(r)
-
+tr1.move_back(r)
 tr1.current_station
 tr1.next_station(r)
 tr1.previuos_station(r)
