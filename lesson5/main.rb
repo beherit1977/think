@@ -1,21 +1,23 @@
-require_relative "station.rb"
-require_relative "train.rb"
-require_relative "route.rb"
-require_relative "passenger_train.rb"
-require_relative "cargo_train.rb"
-require_relative "passenger_wagon.rb"
-require_relative "cargo_wagon.rb"
+require_relative "instance_counter"
+require_relative "manufacturer"
+require_relative "station"
+require_relative "train"
+require_relative "route"
+require_relative "wagon"
+require_relative "passenger_train"
+require_relative "cargo_train"
+require_relative "passenger_wagon"
+require_relative "cargo_wagon"
 
 user_input = nil
-station_list = []
-route = nil
-trains = []
+station_list = Station.all
+trains = Train.trains_all
 
 def choose_train(trains)
   puts 'Выберите номер поезда из списка'
   trains.each { |x| puts x.number }
   choice = gets.chomp
-  trains.select { |x| x.number if x.number == choice}[0]
+  trains.detect { |x| x.number if x.number == choice}
 end
 
 until user_input == 12
@@ -41,16 +43,16 @@ until user_input == 12
   case user_input
     when 1
       name = gets.chomp
-      station_list << Station.new(name)
+      Station.new(name)
     when 2
       puts 'Выберите начальную станцию'
         station_list.each { |x| puts x.name}
       first = gets.chomp
-        station_one = station_list.detect { |x| x.name if x.name == first}[0]
+        station_one = station_list.detect { |x| x.name if x.name == first}
       puts "Введите конечную станцию: "
         station_list.each { |x| puts x.name}
       second = gets.chomp
-        station_two = station_list.detect { |x| x.name if x.name == second}[0]
+        station_two = station_list.detect { |x| x.name if x.name == second}
       route = Route.new(station_one, station_two)
     when 3
       name = gets.chomp
@@ -64,9 +66,9 @@ until user_input == 12
       puts "1 - Грузовой, 2 - Пассажирский "
       type = gets.to_i
         if type == 1
-          trains << CargoTrain.new(number)
+          CargoTrain.new(number)
         else
-          trains << PassengerTrain.new(number)
+          PassengerTrain.new(number)
         end
     when 6
       train = choose_train(trains)
