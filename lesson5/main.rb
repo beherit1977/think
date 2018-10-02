@@ -3,21 +3,22 @@ require_relative "manufacturer"
 require_relative "station"
 require_relative "train"
 require_relative "route"
-require_relative "wagon"
 require_relative "passenger_train"
 require_relative "cargo_train"
+require_relative "wagon"
 require_relative "passenger_wagon"
 require_relative "cargo_wagon"
 
 user_input = nil
 station_list = Station.all
+route = nil
 trains = Train.trains_all
 
 def choose_train(trains)
   puts 'Выберите номер поезда из списка'
-  trains.each { |x| puts x.number }
+  trains.each_key { |k| puts k }
   choice = gets.chomp
-  trains.detect { |x| x.number if x.number == choice}
+  trains[choice]
 end
 
 until user_input == 12
@@ -59,16 +60,16 @@ until user_input == 12
       route.add_midway(Station.new(name))
     when 4
       name = gets.chomp
-        station = route.stations.select { |x| x.name if x.name == name}[0]
+        station = route.stations.detect { |x| x.name if x.name == name}
       route.delete_midway_station(station)
     when 5
       number = gets.chomp
       puts "1 - Грузовой, 2 - Пассажирский "
       type = gets.to_i
         if type == 1
-          CargoTrain.new(number)
+          Train.trains_all[number] = CargoTrain.new(number)
         else
-          PassengerTrain.new(number)
+          Train.trains_all[number] = PassengerTrain.new(number)
         end
     when 6
       train = choose_train(trains)

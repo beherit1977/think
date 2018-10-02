@@ -15,7 +15,7 @@ def choose_train(trains)
   puts 'Выберите номер поезда из списка'
   trains.each { |x| puts x.number }
   choice = gets.chomp
-  trains.select { |x| x.number if x.number == choice}[0]
+  trains.detect { |x| x.number if x.number == choice}
 end
 
 until user_input == 12
@@ -46,18 +46,18 @@ until user_input == 12
       puts 'Выберите начальную станцию'
         station_list.each { |x| puts x.name}
       first = gets.chomp
-        station_one = station_list.detect { |x| x.name if x.name == first}[0]
+        station_one = station_list.detect { |x| x.name if x.name == first}
       puts "Введите конечную станцию: "
         station_list.each { |x| puts x.name}
       second = gets.chomp
-        station_two = station_list.detect { |x| x.name if x.name == second}[0]
+        station_two = station_list.detect { |x| x.name if x.name == second}
       route = Route.new(station_one, station_two)
     when 3
       name = gets.chomp
       route.add_midway(Station.new(name))
     when 4
       name = gets.chomp
-        station = route.stations.select { |x| x.name if x.name == name}[0]
+        station = route.stations.detect { |x| x.name if x.name == name}
       route.delete_midway_station(station)
     when 5
       number = gets.chomp
