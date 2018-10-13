@@ -4,16 +4,20 @@ class Train
 
   TRAIN_NUMBER = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
 
-  attr_reader :speed, :wagons, :number, :current_station, :trains
+  attr_reader :speed, :wagons, :number, :current_station
 
-  @@trains = {}
+  class << self
+    attr_reader :trains
+  end
+
+  @trains = {}
 
   def self.trains_all
-    @@trains
+    @trains
   end
 
   def self.find(num)
-    @@trains[num]
+    @trains[num]
   end
 
   def
@@ -22,7 +26,7 @@ class Train
     validate!
     @speed = 0
     @wagons = []
-    @@trains[number] = self
+    Train.trains[number] = self
     register_instance
     @counter = 0
   end
