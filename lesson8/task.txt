@@ -1,0 +1,39 @@
+Просмотреть код своего проекта и попробовать применить рассмотренные
+идиомы там, где это возможно.
+Изучить Ruby Style Guide (ссылка в материалах к уроку).
+Рекомендую знакомиться с английским вариантом,
+а русский использовать только для непонятных мест.
+Английский вариант наиболее актуальный, кроме того,
+в русском есть неточности.
+Посмотреть мастер-класс "Почему код должен быть стильным"
+(ссылка в материалах к уроку)
+Установить rubocop и проанализировать свой проект с его помощью
+Исправить все ошибки (кроме отсутствия документации),
+которые выдаст rubocop. То, что он не сможет исправить
+в автоматическом режиме, исправить вручную.
+
+main.rb:92:7: C: Metrics/BlockNesting: Avoid more than 3 levels of block nesting.
+      until type == 1 || type == 2 ...
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+main.rb:92:13: C: Style/MultipleComparison: Avoid comparing a variable with multiple items in a conditional, use Array#include? instead.
+      until type == 1 || type == 2
+            ^^^^^^^^^^^^^^^^^^^^^^
+
+main.rb:97:48: C: Style/MultipleComparison: Avoid comparing a variable with multiple items in a conditional, use Array#include? instead.
+          raise 'You must enter 1 or 2' unless type == 1 || type == 2
+                                               ^^^^^^^^^^^^^^^^^^^^^^
+
+station.rb:6:3: C: Style/ClassVars: Replace class var @@all_stations with a class instance var.
+  @@all_stations = []
+  ^^^^^^^^^^^^^^
+train.rb:9:3: C: Style/ClassVars: Replace class var @@trains with a class instance var.
+  @@trains = {}
+  ^^^^^^^^
+
+train.rb:78:81: C: Metrics/LineLength: Line is too long. [81/80]
+    @current_station = route.stations[route.stations.index(@current_station) + 1]
+                                                                                ^
+train.rb:84:81: C: Metrics/LineLength: Line is too long. [81/80]
+    @current_station = route.stations[route.stations.index(@current_station) - 1]
+                                                                                ^
