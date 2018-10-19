@@ -1,6 +1,8 @@
 class Train
+  include Validation
   include InstanceCounter
   include Manufacturer
+  extend Accessors
 
   TRAIN_NUMBER = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
 
@@ -103,12 +105,6 @@ class Train
   end
 
   protected
-
-  def validate!
-    raise 'Wrong train number format' if number !~ TRAIN_NUMBER
-  rescue RuntimeError => e
-    puts e
-  end
 
   def last_station?(route)
     route.stations.last == @current_station

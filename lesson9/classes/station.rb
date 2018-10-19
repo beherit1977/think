@@ -1,7 +1,11 @@
 class Station
+  include Validation
   include InstanceCounter
+  extend Accessors
 
   attr_reader :trains, :name
+  validate :name, :presence
+  validate :name, :type, String
 
   class << self
     attr_reader :all_stations
@@ -53,13 +57,5 @@ class Station
 
   def leave(train)
     @trains.delete(train)
-  end
-
-  protected
-
-  def validate!
-    raise 'Name should be at least 3 chars long' if name.length < 3
-
-    true
   end
 end
