@@ -8,7 +8,7 @@ module Accessors
       define_method("#{name}_history") { instance_variable_get(attr_history) }
 
       define_method("#{name}=") do |value|
-        instance_variable_set(attr_history, []) if instance_variable_get(attr_history).nil?
+        instance_variable_set(attr_history, []) unless instance_variable_get(attr_history)
 
         instance_variable_set(attr_name, value)
         instance_variable_get(attr_history) << instance_variable_get(attr_name)
